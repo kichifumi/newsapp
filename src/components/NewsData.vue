@@ -14,14 +14,16 @@
         <h3>
           <p style="width: 75%">{{ item.title }}</p>
         </h3>
-        <p style="width: 75%">{{ item.description }}</p>
-        <p>{{ item.publishedAt }}</p>
+        <p style="width: 75%">{{ omittedText(item.description) }}</p>
+        <p>{{ changeMoment(item.publishedAt) }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import moment from "moment";
+
 export default {
   name: "News",
   props: {
@@ -37,10 +39,22 @@ export default {
     this.getNews();
   },
   methods: {
+    // 日付変換処理
+    changeMoment(value: string) {
+      return moment(value, "YYYY/MM/DD HH:mm:S").fromNow();
+    },
+    // 文字列制限処理
+    omittedText(text: string) {
+      const MAX_LENGTH = 90;
+      if (text.length > MAX_LENGTH) {
+        return text.substr(0, MAX_LENGTH) + "...";
+      }
+      return text;
+    },
+    // ニュース取得
     getNews() {
       console.log("*** getNews Start : " + JSON.stringify(this.params));
 
-      // ページサイズ
       const pageSize = 10;
       const baseUrl = `https://newsapi.org/v2/top-headlines?country=jp&pageSize=${pageSize}&apiKey=735dccc6a61b4ea8ac03bdb82b9395ba`;
       let addUrl = baseUrl;
@@ -48,11 +62,9 @@ export default {
       if (this.params && this.params.category)
         addUrl += `&category=${this.params.category}`;
 
-      // ニュースデータ取得
       this.axios
         .get(addUrl)
         .then((response) => {
-          // const res = JSON.stringify(response.data.articles);
           this.items = response.data.articles;
         })
         .catch((e) => {
@@ -74,8 +86,8 @@ export default {
   position: relative;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .newsImage {
