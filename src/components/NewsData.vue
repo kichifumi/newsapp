@@ -1,10 +1,22 @@
 <template>
   <div class="news">
     <h3>{{ title }}</h3>
-    <!-- ニュースデータを設定 -->
-    <div class="newsRow" v-for="(item, index) in items" :key="index">
-
-      {{item.title}}
+    <!-- ニュースデータ設定 -->
+    <div class="newsData" v-for="(item, index) in items" :key="index">
+      <img
+        class="newsImage"
+        alt="news image"
+        v-bind:src="item.urlToImage"
+        style="vertical-align: middle"
+        align="right"
+      />
+      <div>
+        <h3>
+          <p style="width: 75%">{{ item.title }}</p>
+        </h3>
+        <p style="width: 75%">{{ item.description }}</p>
+        <p>{{ item.publishedAt }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -20,6 +32,9 @@ export default {
     return {
       items: Object,
     };
+  },
+  created() {
+    this.getNews();
   },
   methods: {
     getNews() {
@@ -45,25 +60,31 @@ export default {
         });
     },
   },
-  created() {
-    console.log("*** setup Start ***");
-    this.getNews();
-  },
 };
 </script>
 
 <style scoped>
-.newsRow {
-    box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
-    text-align: left;
-    vertical-align: top;
-    margin: 20px 50px 20px 20px;
-    border-radius: 20px;
-    background-color: #fff;
-    position: relative;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-right: 20px;
-    padding-left: 20px;
+.newsData {
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+  text-align: left;
+  vertical-align: top;
+  margin: 10px;
+  border-radius: 20px;
+  background-color: #fff;
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.newsImage {
+  object-fit: contain;
+  width: 15%;
+  border-radius: 5px;
+  max-height: 100px;
+  margin-right: 10px;
+  flex: 1;
+  padding-top: 20px;
 }
 </style>
