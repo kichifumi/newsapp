@@ -1,20 +1,27 @@
 <template>
   <div class="headline">
-    <h1>Headline</h1>
-    <NewsData title="ヘッドライン"/>
+    <NewsData title="ヘッドライン" :params="params" />
   </div>
 </template>
 
 <script lang="ts">
-import NewsData from '@/components/NewsData.vue'; // @ is an alias to /src
+import NewsData from "@/components/NewsData.vue"; // @ is an alias to /src
 
 export default {
-  name: 'Headline',
+  name: "Headline",
   components: {
-    NewsData
+    NewsData,
+  },
+  data() {
+    return {
+      // コンポーネントへの引数を設定
+      params: {
+        category: "business",
+      },
+    };
   },
   created() {
     console.log("ヘッドライン");
-  }
+  },
 };
 </script>
