@@ -1,17 +1,24 @@
 <template>
   <div class="business">
-    <h1>Business</h1>
-    <NewsData title="ビジネス"/>
+    <NewsData title="ビジネス" :params="params" />
   </div>
 </template>
 
 <script lang="ts">
-import NewsData from '@/components/NewsData.vue'; // @ is an alias to /src
+import NewsData from "@/components/NewsData.vue"; // @ is an alias to /src
 
 export default {
-  name: 'Business',
+  name: "Business",
   components: {
-    NewsData
+    NewsData,
+  },
+  data() {
+    return {
+      // コンポーネントへの引数を設定
+      params: {
+        category: "business",
+      },
+    };
   },
 };
 </script>

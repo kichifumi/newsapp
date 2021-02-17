@@ -16,12 +16,9 @@ export default {
     return {
       // コンポーネントへの引数を設定
       params: {
-        category: "business",
+        category: "",
       },
     };
-  },
-  created() {
-    console.log("ヘッドライン");
   },
 };
 </script>
