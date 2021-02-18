@@ -11,8 +11,9 @@
         align="right"
       />
       <div>
+        <p>{{getPublisher(item.title)}}</p>
         <h3>
-          <p style="width: 75%">{{ item.title }}</p>
+          <p style="width: 75%">{{ getNewsTitle(item.title) }}</p>
         </h3>
         <p style="width: 75%">{{ omittedText(item.description) }}</p>
         <p>{{ changeMoment(item.publishedAt) }}</p>
@@ -35,24 +36,30 @@ export default {
       items: Object,
     };
   },
-  created() {
+  mounted() {
     this.getNews();
   },
   methods: {
     // 日付変換処理
-    changeMoment(value: string) {
+    changeMoment(value: string): string {
       return moment(value, "YYYY/MM/DD HH:mm:S").fromNow();
     },
     // 文字列制限処理
-    omittedText(text: string) {
+    omittedText(text: string): string {
       const MAX_LENGTH = 90;
-      if (text.length > MAX_LENGTH) {
+      if (text && text.length > MAX_LENGTH) {
         return text.substr(0, MAX_LENGTH) + "...";
       }
       return text;
     },
+    getPublisher(text: string): string {
+      return text.substr(text.indexOf("-") + 2);
+    },
+    getNewsTitle(text: string): string {
+      return text.substr(0, text.indexOf("-"));
+    },
     // ニュース取得
-    getNews() {
+    async getNews() {
       console.log("*** getNews Start : " + JSON.stringify(this.params));
 
       const pageSize = 10;
@@ -62,7 +69,7 @@ export default {
       if (this.params && this.params.category)
         addUrl += `&category=${this.params.category}`;
 
-      this.axios
+      await this.axios
         .get(addUrl)
         .then((response) => {
           this.items = response.data.articles;

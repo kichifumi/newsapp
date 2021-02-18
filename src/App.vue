@@ -2,11 +2,16 @@
   <div id="app">
     <div id="nav">
       <Headers />
-      <!-- <router-link to="{ name : 'Headline', params: { msg: 'test value' }}">Headline</router-link> | -->
       <router-link to="/">Headline</router-link> |
-      <router-link to="/business">Business</router-link>
+      <router-link to="/business">Business</router-link> |
+      <router-link to="/entertainment">Entertainment</router-link> |
+      <router-link to="/general">General</router-link> |
+      <router-link to="/health">Health</router-link> |
+      <router-link to="/science">Science</router-link> |
+      <router-link to="/sports">Sports</router-link> |
+      <router-link to="/technology">Technology</router-link>
+      <router-view />
     </div>
-    <router-view />
   </div>
 </template>
 
@@ -28,12 +33,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  width: 60%;
   margin: 0 auto;
 }
 
 #nav {
-  // padding: 30px;
+  margin-left: 20%;
+  margin-right: 20%;
 
   a {
     font-weight: bold;

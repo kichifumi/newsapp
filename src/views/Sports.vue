@@ -1,6 +1,6 @@
 <template>
-  <div class="entertainment">
-    <NewsData title="エンタメ" :params="params" />
+  <div class="sports">
+    <NewsData title="スポーツ" :params="params" />
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import NewsData from "@/components/NewsData.vue"; // @ is an alias to /src
 
 export default {
-  name: "Entertainment",
+  name: "Sports",
   components: {
     NewsData,
   },
@@ -16,7 +16,7 @@ export default {
     return {
       // コンポーネントへの引数を設定
       params: {
-        category: "entertainment",
+        category: "sports",
       },
     };
   },
