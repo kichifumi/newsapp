@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
+      <div class="tabs">
+      <!-- <TabItem v-for="item in list" v-bind="item" :key="item.id" v-model="currentId"/> -->
+      </div>
       <Headers />
       <router-link to="/">Headline</router-link> |
       <router-link to="/business">Business</router-link> |
@@ -17,12 +20,29 @@
 
 <script>
 import Headers from "@/components/Headers.vue"; // @ is an alias to /src
+// import TabItem from '@/components/TabItem.vue'
 
 export default {
   name: "App",
   components: {
     Headers,
+    // TabItem
   },
+  // computed: {
+  //   current() {
+  //     return this.list.find(el => el.id === this.currentId) || {}
+  //   }
+  // },
+  // data() {
+  //   return {
+  //     currentId: 1,
+  //     list: [
+  //       { id: 1, label: 'Headline', content: '' },
+  //       { id: 2, label: 'Business', content: 'business' },
+  //       { id: 3, label: 'Entertainment', content: 'コンテンツ3' },
+  //     ]
+  //   }
+  // },
 };
 </script>
 

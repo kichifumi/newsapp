@@ -11,7 +11,7 @@
         align="right"
       />
       <div>
-        <p>{{getPublisher(item.title)}}</p>
+        <p>{{ getPublisher(item.title) }}</p>
         <h3>
           <p style="width: 75%">{{ getNewsTitle(item.title) }}</p>
         </h3>
@@ -36,7 +36,7 @@ export default {
       items: Object,
     };
   },
-  mounted() {
+  created() {
     this.getNews();
   },
   methods: {
