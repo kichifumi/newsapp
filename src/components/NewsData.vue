@@ -1,5 +1,6 @@
 <template>
   <div class="news">
+    <br>
     <!-- ニュースデータ設定 -->
     <div class="modal-mask" v-if="isLoading === true">
       <vue-loading
@@ -105,7 +106,7 @@ export default {
   text-align: left;
   vertical-align: top;
   margin: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: #fff;
   position: relative;
   padding-top: 10px;
