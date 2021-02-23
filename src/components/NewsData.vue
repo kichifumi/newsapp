@@ -1,7 +1,14 @@
 <template>
   <div class="news">
-    <h3>{{ title }}</h3>
+    <br>
     <!-- ニュースデータ設定 -->
+    <div class="modal-mask" v-if="isLoading === true">
+      <vue-loading
+        type="bubbles"
+        color="#333"
+        :size="{ width: '50px', height: '50px' }"
+      ></vue-loading>
+    </div>
     <div class="newsData" v-for="(item, index) in items" :key="index">
       <img
         class="newsImage"
@@ -11,8 +18,9 @@
         align="right"
       />
       <div>
+        <p>{{ getPublisher(item.title) }}</p>
         <h3>
-          <p style="width: 75%">{{ item.title }}</p>
+          <p style="width: 75%">{{ getNewsTitle(item.title) }}</p>
         </h3>
         <p style="width: 75%">{{ omittedText(item.description) }}</p>
         <p>{{ changeMoment(item.publishedAt) }}</p>
@@ -23,6 +31,7 @@
 
 <script lang="ts">
 import moment from "moment";
+import { VueLoading } from "vue-loading-template";
 
 export default {
   name: "News",
@@ -30,9 +39,13 @@ export default {
     title: String,
     params: Object,
   },
+  components: {
+    VueLoading,
+  },
   data() {
     return {
       items: Object,
+      isLoading: false,
     };
   },
   created() {
@@ -40,20 +53,28 @@ export default {
   },
   methods: {
     // 日付変換処理
-    changeMoment(value: string) {
+    changeMoment(value: string): string {
       return moment(value, "YYYY/MM/DD HH:mm:S").fromNow();
     },
     // 文字列制限処理
-    omittedText(text: string) {
+    omittedText(text: string): string {
       const MAX_LENGTH = 90;
-      if (text.length > MAX_LENGTH) {
+      if (text && text.length > MAX_LENGTH) {
         return text.substr(0, MAX_LENGTH) + "...";
       }
       return text;
     },
+    getPublisher(text: string): string {
+      return text.substr(text.indexOf("-") + 2);
+    },
+    getNewsTitle(text: string): string {
+      return text.substr(0, text.indexOf("-"));
+    },
     // ニュース取得
-    getNews() {
+    async getNews() {
       console.log("*** getNews Start : " + JSON.stringify(this.params));
+      // ローディング表示
+      this.isLoading = true;
 
       const pageSize = 10;
       const baseUrl = `https://newsapi.org/v2/top-headlines?country=jp&pageSize=${pageSize}&apiKey=735dccc6a61b4ea8ac03bdb82b9395ba`;
@@ -62,13 +83,17 @@ export default {
       if (this.params && this.params.category)
         addUrl += `&category=${this.params.category}`;
 
-      this.axios
+      await this.axios
         .get(addUrl)
         .then((response) => {
           this.items = response.data.articles;
+          // ローディング非表示
+          this.isLoading = false;
         })
         .catch((e) => {
           console.log(e);
+          // ローディング非表示
+          this.isLoading = false;
         });
     },
   },
@@ -81,7 +106,7 @@ export default {
   text-align: left;
   vertical-align: top;
   margin: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: #fff;
   position: relative;
   padding-top: 10px;
@@ -98,5 +123,18 @@ export default {
   margin-right: 10px;
   flex: 1;
   padding-top: 20px;
+}
+
+.modal-mask {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

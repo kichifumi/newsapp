@@ -19,7 +19,43 @@ const routes: Array<RouteConfig> = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Business.vue'),
     props: true
-  }
+  },
+  {
+    path: '/entertainment',
+    name: 'Entertainment',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Entertainment.vue'),
+    props: true
+  },
+  {
+    path: '/general',
+    name: 'General',
+    component: () => import(/* webpackChunkName: "about" */ '../views/General.vue'),
+    props: true
+  },
+  {
+    path: '/health',
+    name: 'Health',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Health.vue'),
+    props: true
+  },
+  {
+    path: '/science',
+    name: 'Science',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Science.vue'),
+    props: true
+  },
+  {
+    path: '/sports',
+    name: 'Sports',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Sports.vue'),
+    props: true
+  },
+  {
+    path: '/technology',
+    name: 'Technology',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Technology.vue'),
+    props: true
+  },
 ]
 
 const router = new VueRouter({

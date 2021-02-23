@@ -1,23 +1,48 @@
 <template>
   <div id="app">
     <div id="nav">
+      <div class="tabs">
+      <!-- <TabItem v-for="item in list" v-bind="item" :key="item.id" v-model="currentId"/> -->
+      </div>
       <Headers />
-      <!-- <router-link to="{ name : 'Headline', params: { msg: 'test value' }}">Headline</router-link> | -->
       <router-link to="/">Headline</router-link> |
-      <router-link to="/business">Business</router-link>
+      <router-link to="/business">Business</router-link> |
+      <router-link to="/entertainment">Entertainment</router-link> |
+      <router-link to="/general">General</router-link> |
+      <router-link to="/health">Health</router-link> |
+      <router-link to="/science">Science</router-link> |
+      <router-link to="/sports">Sports</router-link> |
+      <router-link to="/technology">Technology</router-link>
+      <router-view />
     </div>
-    <router-view />
   </div>
 </template>
 
 <script>
 import Headers from "@/components/Headers.vue"; // @ is an alias to /src
+// import TabItem from '@/components/TabItem.vue'
 
 export default {
   name: "App",
   components: {
     Headers,
+    // TabItem
   },
+  // computed: {
+  //   current() {
+  //     return this.list.find(el => el.id === this.currentId) || {}
+  //   }
+  // },
+  // data() {
+  //   return {
+  //     currentId: 1,
+  //     list: [
+  //       { id: 1, label: 'Headline', content: '' },
+  //       { id: 2, label: 'Business', content: 'business' },
+  //       { id: 3, label: 'Entertainment', content: 'コンテンツ3' },
+  //     ]
+  //   }
+  // },
 };
 </script>
 
@@ -28,12 +53,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  width: 60%;
   margin: 0 auto;
 }
 
 #nav {
-  // padding: 30px;
+  margin-left: 20%;
+  margin-right: 20%;
 
   a {
     font-weight: bold;
