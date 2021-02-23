@@ -47,8 +47,9 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+1p');
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "M PLUS 1p";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -63,6 +64,7 @@ export default {
   a {
     font-weight: bold;
     color: #2c3e50;
+    font-size: 20px;
 
     &.router-link-exact-active {
       color: #42b983;
