@@ -50,7 +50,7 @@ export default {
     };
   },
   created() {
-    this.getNews();
+    (this as any).getNews();
   },
   methods: {
     // 日付変換処理
@@ -74,28 +74,28 @@ export default {
     },
     // ニュース取得
     async getNews() {
-      console.log("*** getNews Start : " + JSON.stringify(this.params));
+      console.log("*** getNews Start : ");
       // ローディング表示
-      this.isLoading = true;
+      (this as any).isLoading = true;
 
       const pageSize = 10;
       const baseUrl = `https://newsapi.org/v2/top-headlines?country=jp&pageSize=${pageSize}&apiKey=735dccc6a61b4ea8ac03bdb82b9395ba`;
       let addUrl = baseUrl;
       // URL編集
-      if (this.params && this.params.category)
-        addUrl += `&category=${this.params.category}`;
+      if ((this as any).params && (this as any).params.category)
+        addUrl += `&category=${(this as any).params.category}`;
 
-      await this.axios
+      await (this as any).axios
         .get(addUrl)
-        .then((response) => {
-          this.items = response.data.articles;
+        .then((response: any) => {
+          (this as any).items = response.data.articles;
           // ローディング非表示
-          this.isLoading = false;
+          (this as any).isLoading = false;
         })
-        .catch((e) => {
+        .catch((e: any) => {
           console.log(e);
           // ローディング非表示
-          this.isLoading = false;
+          (this as any).isLoading = false;
         });
     },
   },
