@@ -6,7 +6,6 @@ NewsAPIからニュースを取得し、表示するアプリです。
 ## 開発環境
 - Vue.js(2.6.12)
 - vue/cli 4.5.11
-- Bootstrap4
 - NewsAPI(https://newsapi.org/)
 
 ## 苦労した点
