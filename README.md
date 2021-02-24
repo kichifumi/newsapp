@@ -1,24 +1,20 @@
 # newsapp
 
-## Project setup
-```
-yarn install
-```
+## 概要
+NewsAPIからニュースを取得し、表示するアプリです。  
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
 
-### Compiles and minifies for production
-```
-yarn build
-```
 
-### Lints and fixes files
-```
-yarn lint
-```
+## 開発環境
+- Vue.js
+- Bootstrap4
+- NewsAPI(https://newsapi.org/)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Project setup  
+  
+```
+git clone https://github.com/kichifumi/newsapp.git
+cd newsapp
+npm run serve  
+```
