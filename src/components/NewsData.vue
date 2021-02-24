@@ -18,7 +18,7 @@
         align="right"
       />
       <div>
-        <p>{{ getPublisher(item.title) }}</p>
+        <p>{{ item.author }}</p>
         <h3>
           <p style="width: 75%">{{ getNewsTitle(item.title) }}</p>
         </h3>
@@ -65,9 +65,6 @@ export default {
         return text.substr(0, MAX_LENGTH) + "...";
       }
       return text;
-    },
-    getPublisher(text: string): string {
-      return text.substr(text.indexOf("-") + 2);
     },
     getNewsTitle(text: string): string {
       return text.substr(0, text.indexOf("-"));
