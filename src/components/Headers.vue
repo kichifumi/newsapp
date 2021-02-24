@@ -10,9 +10,6 @@
         >ニュース</span
       >
     </p>
-    <!-- <router-link to="/">Headline</router-link> |
-    <router-link to="/business">Business</router-link>
-    <router-view /> -->
   </div>
 </template>
 
