@@ -23,7 +23,8 @@
           <p style="width: 75%">{{ getNewsTitle(item.title) }}</p>
         </h3>
         <p style="width: 75%">{{ omittedText(item.description) }}</p>
-        <p>{{ changeMoment(item.publishedAt) }}</p>
+        <p><a v-bind:href="item.url" target="_blank" style="font-size:14px;">続きを読む</a></p>
+        <p style="font-size:14px;">{{ changeMoment(item.publishedAt) }}</p>
       </div>
     </div>
   </div>
@@ -54,6 +55,7 @@ export default {
   methods: {
     // 日付変換処理
     changeMoment(value: string): string {
+      moment.locale('ja');
       return moment(value, "YYYY/MM/DD HH:mm:S").fromNow();
     },
     // 文字列制限処理
